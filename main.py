@@ -81,9 +81,12 @@ class Runner(submitit.helpers.Checkpointable):
 
 if __name__ == "__main__":
     setup_logging()
-
+    # 对命令行进行解析     
     parser = flags.get_parser()
+    # 将未解析成功的参数保存到list中，赋值给override_args     
     args, override_args = parser.parse_known_args()
+    # 1. 对args，将其赋值给config
+    # 2. 对override_args，创建字典保存饼赋值给config
     config = build_config(args, override_args)
 
     if args.submit:  # Run on cluster
